@@ -16,6 +16,20 @@ Some fields or forms may have an *upd* method which is updater of the class that
 ### models.py
 This file is a collection of models for usage in projects made with python.
 
+#### Error forms and functions
+##### ErrorForm
+This is the most basic form for errors/warnings(to console). If the type contains "WARNING" it will be treated differently
+- *text*: This is the text of error/warning that gives the information
+- *occurrence*: This is the page name where the error/warning occurred
+- *type*(default "200 INPUT ERROR"): This is the type of error/warning
+
+##### ErrorHelper
+This is a helper for error form that checks if values adhere to their required types and outputs errors if they don't
+- *argstrrep*: This is the list of string representations of values. Only those representations will be shown to the user
+- *args*: This is the list of values to be checked
+- *types*: This is the list of types for values being checked. If types[x] is a list then it will accept only if value is strictly ib list, else it will just check if type of value is the type here
+- *ignore*(default True): This is the flag to ignore the abscence of page in what we are checking(else an error will be shown). It will set the page to undefined
+  
 #### Console fields
 ##### TextField
 This field is used for outputting text in console
