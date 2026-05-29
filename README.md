@@ -97,5 +97,31 @@ This is an embedding for tkinter built-in module
 ### program.py
 This file is the framework manager. It manages your pages and objects on them
 
+#### DummyPage
+Look DummyPage in models.py
+
+#### Singleton
+This is a singleton metaclass. It manages creating singletons(such as Games). It also makes all variables from *on_begin* method of said class available globally
+
+#### Game
+This is a class for games or views. You should make a class that follows from game. If it has *on_begin*, it will make all valriables defined there with self. global. Otherwise it is just container for your functions which can be accessed anytime with YourGameClass().YourFunction(params)
+
+#### Program
+- *ps*: This is the page the program execution starts on. It should be defined before program and should redirect to actual first page
+- *pctx*: This is the initial page context for the first(*ps*) page.
+- *pcs*: This is the class of the initial(*ps*) page.
+- *vpgs*: This is the list of valid pages(pages that can be redirected to or started on)
+- *game*: This is your game class(should follow from Game)
+- *pps*(default 25): This is pages per second your program will run. Used for delaying some pages
+- *gfile*(default "g.json"): This is the file your globals will be saved to
+- *globals*(default {}): This is your initial globals when there is nothing in file. You should manipulate program.globals["thing"] for storing in file and accessing data
+
+**Methods**:
+  - *run* - Runs the program from start(*ps*) to end(program.exit_now=True or pygameembedding.exit=True)
+  - *gstore* - Stores the globals to file
+  - *gload* - Loads the globals from file
+  - *write_history(parameters: *page*): Writes the page and context to history
+  - *read_history(parameters: *block_err*): Reads the last written context from history, if the history is empty it will output an error. Can be blocked if block_err is True.
+
 ### data.py
 This file is a special database module that is made to store, upload and delete files and/or their contents. Works with .json files
