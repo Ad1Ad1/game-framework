@@ -76,6 +76,24 @@ This field is used for drawing multiple of same character to console. Recommende
 - *amo*: This is the amount of duplications to make
 - *page*: This is the page name of the page the field is linked to
 
+#### Tkinter fields and embedding
+##### CanvasEmbedding
+This is an embedding for tkinter built-in module
+- *page*: This is the page name of the page the field is linked to
+- *name*: This is the name of window
+- *width*: This is the width of window
+- *height*: This is the height of window
+- *program*: This is the program we are currently in
+- *resizex*(default 0): This is how much the window is resizable on x-axis
+- *resizey*(default 0): This is how much the window is resizable on y-axis
+- *thick*(default 0): This is the thickness of the border of window
+- *highlight_thick*(default 0): This is the highlight thickness of the border of window
+
+**Methods**:
+  - *NewWindow* - creates a new window. Accepts no parameters
+  - *NewCanvas*(parameters: *window*) - creates a new canvas on a window. Accepts the number of a window(from 0)
+  - *call* - updates all windows
+
 ### program.py
 This file is the framework manager. It manages your pages and objects on them
 
