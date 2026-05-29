@@ -120,8 +120,8 @@ This is a class for games or views. You should make a class that follows from ga
   - *run* - Runs the program from start(*ps*) to end(program.exit_now=True or pygameembedding.exit=True)
   - *gstore* - Stores the globals to file
   - *gload* - Loads the globals from file
-  - *write_history(parameters: *page*): Writes the page and context to history
-  - *read_history(parameters: *block_err*): Reads the last written context from history, if the history is empty it will output an error. Can be blocked if block_err is True.
+  - *write_history*(parameters: *page*): Writes the page and context to history
+  - *read_history*(parameters: *block_err*): Reads the last written context from history, if the history is empty it will output an error. Can be blocked if block_err is True.
 
 ### data.py
 This file is a special database module that is made to store, upload and delete files and/or their contents. Works with .json files
