@@ -10,6 +10,7 @@ This version supports the usage of:
 ### Definitions and general information
 A field is a model that does a specific separate function.
 A form is a model that uses multiple fields
+An embedding is a general manager of an imported module or a dictionary
 Every field, form, page has a *call* method which is an entry, execution and exit method of class. In general only it is called upon execution
 Some fields or forms may have an *upd* method which is updater of the class that is executed on update tick.
 
@@ -29,7 +30,23 @@ This is a helper for error form that checks if values adhere to their required t
 - *args*: This is the list of values to be checked
 - *types*: This is the list of types for values being checked. If types[x] is a list then it will accept only if value is strictly ib list, else it will just check if type of value is the type here
 - *ignore*(default True): This is the flag to ignore the abscence of page in what we are checking(else an error will be shown). It will set the page to undefined
-  
+
+#### Technical fields and other technical things
+##### RedirectField
+This field is used for redirecting to another page in program
+- *target*: This is the class of target page for redirect
+- *page*: This is the class of current page for redirect
+- *program*: This is the instance of program inside which we are redirecting
+- *ctx*(default {}): This is the in-page context that will be given to the call method of the page we are redirecting to. If {}, default context of that page will be used
+
+##### Embedding
+This is an embedding used to store multiple values
+- *page*: This is the page name of the page the embedding is linked to
+- *grouped*(default {}): This is the data we are grouping in the embedding
+
+##### DummyPage
+This is a dummy page used as a substitution for a real page in some cases. It has a name "dummy" and a call method which does nothing
+
 #### Console fields
 ##### TextField
 This field is used for outputting text in console
