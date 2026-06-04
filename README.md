@@ -31,6 +31,10 @@ This is a helper for error form that checks if values adhere to their required t
 - *types*: This is the list of types for values being checked. If types[x] is a list then it will accept only if value is strictly ib list, else it will just check if type of value is the type here
 - *ignore*(default True): This is the flag to ignore the abscence of page in what we are checking(else an error will be shown). It will set the page to undefined
 
+##### ListErrorHelper
+This is a helper for error form that checks if lists have same length and outputs error if they don't
+- *lists*: This is the list of lists we are checking
+
 #### Technical fields and other technical things
 ##### RedirectField
 This field is used for redirecting to another page in program
@@ -46,6 +50,18 @@ This is an embedding used to store multiple values
 
 ##### DummyPage
 This is a dummy page used as a substitution for a real page in some cases. It has a name "dummy" and a call method which does nothing
+
+##### check
+- *val*: This is the value to check
+- *req*: This is the required type of *val*
+- *page*: This is the page name of the page the embedding is linked to
+- *mini*: This is the minimum value(or length) for int, float, str types.
+- *maxi*: This is the maximum value(or length) for int, float, str types.
+- *dis*: Those are values that are accepted(all other values will ask for another input. If empty, accepts any value of *req* type
+- *adv*(default False): This is flag for whether this is console mode(False) or canvas mode(True)
+- *cne*(default None): This is the *CanvasEmbedding* embedding if the function is in the Advanced mode
+- *canvas*(default None): This is the canvas number if the function is in the Advanced mode
+- *element*(default None): This is the canvas element to which link and display the error if the function is in the Advanced mode
 
 #### Console fields
 ##### TextField
@@ -93,6 +109,8 @@ This is an embedding for tkinter built-in module
   - *NewWindow* - creates a new window. Accepts no parameters
   - *NewCanvas*(parameters: *window*) - creates a new canvas on a window. Accepts the number of a window(from 0)
   - *call* - updates all windows
+
+##### 
 
 ### program.py
 This file is the framework manager. It manages your pages and objects on them
