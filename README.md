@@ -8,11 +8,12 @@ This version supports the usage of:
 - *Your own models and files as long as you take the responsibility*
   
 ### Definitions and general information
-A field is a model that does a specific separate function.
-A form is a model that uses multiple fields
-An embedding is a general manager of an imported module or a dictionary
-Every field, form, page has a *call* method which is an entry, execution and exit method of class. In general only it is called upon execution
-Some fields or forms may have an *upd* method which is updater of the class that is executed on update tick.
+- A field is a model that does a specific separate function.
+- A form is a model that uses multiple fields
+- An embedding is a general manager of an imported module or a dictionary
+- Every field, form, page has a *call* method which is an entry, execution and exit method of class. In general only it is called upon execution
+- Some fields or forms may have an *upd* method which is updater of the class that is executed on update tick.
+- Some fields or forms may have *redraw* or *ignored* parameters. Those are if we want to redraaw the field/form on screen or ignore drawing
 
 ### models.py
 This file is a collection of models for usage in projects made with python.
@@ -50,6 +51,12 @@ This is an embedding used to store multiple values
 
 ##### DummyPage
 This is a dummy page used as a substitution for a real page in some cases. It has a name "dummy" and a call method which does nothing
+
+##### DummyCmd
+This is a dummy command that does nothing and accepts no arguments
+
+##### DummyCmdArgs
+This is a dummy command that accepts any amount of unspecified arguments and does nothing
 
 ##### check
 - *val*: This is the value to check
@@ -110,7 +117,30 @@ This is an embedding for tkinter built-in module
   - *NewCanvas*(parameters: *window*) - creates a new canvas on a window. Accepts the number of a window(from 0)
   - *call* - updates all windows
 
-##### 
+##### ButtonField
+This is a simplificator for a button on tkinter screen
+- *canvas_embed*: *CanvasEmbedding* that the button will be displayed on
+- *cmd*: Button command to execute
+- *name*: Name of the field
+- *canvas*: Canvas number that the button will be displayed on
+- *background*(default "None"): Background color
+- *foreground*(default "None"): Foreground color
+- *anchor*(default "nw"): Anchor direction for the coordinates
+- *x*(default 150): x position of the button
+- *y*(default 100): y position of the button
+
+##### ChoiceForm
+This is a simplificator for multiple buttons at same distance on tkinter screen
+- *canvas_embed*: *CanvasEmbedding* that the buttons will be displayed on
+- *choicecmds*: Button commands to execute
+- *choicenames*: Name of the field
+- *canvas*: Canvas number that the buttons will be displayed on
+- *backgrounds*(default []): Background colors 
+- *foreground*(default []): Foreground colors
+- *anchor*(default "nw"): Anchor direction for the coordinates
+- *x*(default 150): x begin position for the buttons
+- *y*(default 100): y begin position for the buttons
+- *distance*(default 30): Distance between the buttons
 
 ### program.py
 This file is the framework manager. It manages your pages and objects on them
