@@ -36,6 +36,15 @@ This is a helper for error form that checks if values adhere to their required t
 This is a helper for error form that checks if lists have same length and outputs error if they don't
 - *lists*: This is the list of lists we are checking
 
+##### InteractiveUserErrorForm
+This is an error form for displaying on canvas
+- *cne*: *CanvasEmbedding* that the error will be displayed on
+- *canvas*: Canvas number that the error will be displayed on
+- *element*: This is the element on Canvas to link the form to
+- *text*: This is the text of error/warning that gives the information
+- *occurrence*: This is the page name where the error/warning occurred
+- *type*(default "200 INPUT ERROR"): This is the type of error/warning
+
 #### Technical fields and other technical things
 ##### RedirectField
 This field is used for redirecting to another page in program
@@ -90,7 +99,7 @@ This field is used for requesting input from console
 - *inp_type*(default str): This is the input type of this field. Will notify user and ask for another input if input is wrong else will turn the input into specified type and return it.
 - Only accepted types are str, float, int, bool
 - *minimum*(default 0): This is the minimum value(or length) for int, float, str types. Will notify user and ask for another input if input is wrong else will return the input
-- *maximum*(default 0): This is the maximum value(or length) for int, float, str types. Will notify user and ask for another input if input is wrong else will return the input
+- *maximum*(default 100): This is the maximum value(or length) for int, float, str types. Will notify user and ask for another input if input is wrong else will return the input
 - *discretes*(default []): Those are values that are accepted(all other values will ask for another input. If empty, accepts any value of *inp_type* type
 
 ##### SpaceField
@@ -141,6 +150,81 @@ This is a simplificator for multiple buttons at same distance on tkinter screen
 - *x*(default 150): x begin position for the buttons
 - *y*(default 100): y begin position for the buttons
 - *distance*(default 30): Distance between the buttons
+
+##### TextFieldAdv
+This is an advanced text field for canvas
+- *canvas_embed*: *CanvasEmbedding* that the text will be displayed on
+- *text*: text to display
+- *canvas*: Canvas number that the text will be displayed on
+- *x*: x begin position of text
+- *y*: y begin position of text
+- *font_color*(default "black"): color of font
+- *font_type*(default "Times"): type of font
+- *font_size*(default 15): size of font
+- *anchor*(default "nw"): Anchor direction for the coordinates
+ 
+##### ImageField
+This is an image field for canvas
+- *canvas_embed*: *CanvasEmbedding* that the image will be displayed on
+- *x*: x begin position of image
+- *y*: y begin position of image
+- *canvas*: Canvas number that the image will be displayed on
+- *img*(default "./uploads/example.png"): Link to image to display
+- *anchor*(default "nw"): Anchor direction for the coordinates
+
+##### BackgroundForm
+This is a form for covering canvas with tiled images
+- *canvas_embed*: *CanvasEmbedding* that the background will be displayed on
+- *beginx*: x begin position of background
+- *beginy*: y begin position of background
+- *copyx*: copies on x-axis
+- *copyy*: copies on y-axis
+- *canvas*: Canvas number that the image will be displayed on
+- *img*(default "./uploads/example.png"): Link to image to tile
+- *anchor*(default "nw"): Anchor direction for the coordinates
+
+##### GeometryField
+This is a field for displaying geometry figures on canvas
+- *canvas_embed*: *CanvasEmbedding* that the geometry figure will be displayed on
+- *xs*: x positions of figure
+- *ys*: y positions of figure
+- *canvas*: Canvas number that the figure will be displayed on
+- *extent*(default 180): Extent of arc(if type is arc)
+- *bd*(default 1): Border width
+- *outline*(default "black"): Color of border/outline
+- *fill*(default ""): Fill color
+- *typea*(default "arc"): Type of figure
+
+##### InputForm
+This is a form for inputting things on canvas
+- *canvas_embed*: *CanvasEmbedding* that the form will be displayed on
+- *width*: Width of input space
+- *x*: x begin position of form
+- *y*: y begin position of form
+- *canvas*: Canvas number that the figure will be displayed on
+- *prompt*:
+- *anchor*(default "nw"): Anchor direction for the coordinates
+- *type_req*(default str): This is the input type of this field. Will notify user and ask for another input if input is wrong else will turn the input into specified type and return it.
+- Only accepted types are str, float, int, bool
+- *minimum*(default 0): This is the minimum value(or length) for int, float, str types. Will notify user and ask for another input if input is wrong else will return the input
+- *maximum*(default 100): This is the maximum value(or length) for int, float, str types. Will notify user and ask for another input if input is wrong else will return the input
+- *discretes*(default []): Those are values that are accepted(all other values will ask for another input. If empty, accepts any value of *inp_type* type
+
+**Methods**:
+- *get* - gets and returns the value input by user
+
+##### Container
+- *canvas_embed*: *CanvasEmbedding* that the container will be displayed on
+- *beginx*: x begin position of the container
+- *beginy*: y begin position of the container
+- *endx*: x end position of the container
+- *canvas*: Canvas number that the button will be displayed on
+- *fields*(default []): Fields to group
+- *height*(default 40): Distance between fields
+- *pos*(default "center"): Position of elements("begin", "center" or "end")
+
+**Methods**:
+- *get_pos*(parameters: *fld2*) - gets and returns the pos of *fld2* if it is inside container else doesn't return anything
 
 ### program.py
 This file is the framework manager. It manages your pages and objects on them
