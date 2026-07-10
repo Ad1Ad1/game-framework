@@ -353,6 +353,8 @@ This is a singleton metaclass. It manages creating singletons(such as Games). It
 This is a class for games or views. You should make a class that follows from game. If it has *on_begin*, it will make all valriables defined there with self. global. Otherwise it is just container for your functions which can be accessed anytime with YourGameClass().YourFunction(params)
 
 #### Program
+This is a class for program of application. This is starting and ending point of any application with Page Framework full use
+*Special*: You can use program.globals as your .json file without worrying about data.py
 - *ps*: This is the page the program execution starts on. It should be defined before program and should redirect to actual first page
 - *pctx*: This is the initial page context for the first(*ps*) page.
 - *pcs*: This is the class of the initial(*ps*) page.
@@ -366,8 +368,26 @@ This is a class for games or views. You should make a class that follows from ga
   - *run* - Runs the program from start(*ps*) to end(program.exit_now=True or pygameembedding.exit=True)
   - *gstore* - Stores the globals to file
   - *gload* - Loads the globals from file
-  - *write_history*(parameters: *page*): Writes the page and context to history
-  - *read_history*(parameters: *block_err*): Reads the last written context from history, if the history is empty it will output an error. Can be blocked if block_err is True.
+  - *write_history*(parameters: *page*) - Writes the page and context to history
+  - *read_history*(parameters: *block_err*) - Reads the last written context from history, if the history is empty it will output an error. Can be blocked if block_err is True.
 
 ### data.py
 This file is a special database module that is made to store, upload and delete files and/or their contents. Works with .json files
+
+#### Database
+This is a class for accessing a .json file
+- *path*: This is the path to file
+- *page*: This is a page to signal database errors on
+- *initial*(default {}): Default json file content(if new file)
+- *sinit*(default False): Silent initialization. Only use in production. Hides errors from creating new file
+
+**Methods**:
+- *new* - Creates a new .json file
+- *pageswap*(arguments: *pgnew*) - Swaps page to pgnew
+- *change*(arguments: *name*, *to*, *total*(default False)) - Changes a field in .json file at key *name* to *to*. total flag indicates if *name* should be ignored and *to* is a dictionary that will be used instead of the entire file
+- *retrieve*(arguments: *name*, *total*(default False)) - Retrieves a field in .json file at key *name*. total flag indicates if *name* should be ignored and give full file to you
+- *delete*(arguments: *name*, *total*(default False)) - Deletes a field from .json file at key *name*. total flag indicates if entire .json file should be deleted(swapped for {})
+- *upload*(arguments: *img*) - copies the file from *img* path to ./uploads/
+
+### framework.py
+This file is a CLI interface module that is made for developers to interact with framework
