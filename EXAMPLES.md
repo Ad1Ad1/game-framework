@@ -9,6 +9,7 @@
 ## Example 01: Hello World!
 
 ```python
+from framework_lib import models, program
 from models import TextField, SpaceField, RedirectField
 from program import Program, Game
 
@@ -37,6 +38,7 @@ program.run()
 ## Example 02: A button on a screen
 
 ```python
+from framework_lib import models, program
 from models import CanvasEmbedding, RedirectField, ButtonField, TextField
 from program import Program, Game
 
@@ -72,6 +74,7 @@ program.run()
 *Note: on_begin inserts into global variables*
 
 ```python
+from framework_lib import models, program
 from models import CanvasEmbedding, RedirectField, ButtonField, TextField
 from program import Program, Game
 
@@ -109,6 +112,7 @@ program.run()
 ## Example 04: Contained
 
 ```python
+from framework_lib import models, program
 from models import CanvasEmbedding, RedirectField, ButtonField, TextField, TextFieldAdv, Container
 from program import Program, Game
 
@@ -148,6 +152,7 @@ program.run()
 ## Example 05: Hello Pygame World!
 
 ```python
+from framework_lib import models, program
 from models import PygameEmbedding, RedirectField, TextFieldExp
 from program import Program, Game
 
@@ -177,6 +182,7 @@ program.run()
 ## Example 06: Pages
 
 ```python
+from framework_lib import models, program
 from models import PygameEmbedding, RedirectField, TextFieldExp, ButtonFieldAdv
 from program import Program, Game
 
@@ -222,6 +228,7 @@ program.run()
 ## Example 07: Group Control
 
 ```python
+from framework_lib import models, program
 from models import PygameEmbedding, RedirectField, TextFieldExp, ButtonFieldAdv, PygameObjectGroup
 from program import Program, Game
 
@@ -269,6 +276,7 @@ program.run()
 ## Example 08: Hooks
 
 ```python
+from framework_lib import models, program
 from models import PygameEmbedding, RedirectField, TextFieldExp, ButtonFieldAdv, PygameObjectGroup, pygame
 from program import Program, Game
 
