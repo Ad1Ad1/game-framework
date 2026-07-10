@@ -5,6 +5,8 @@
 
 [View official Quick Start page](QUICK_START.md)
 
+[View official License](LICENSE)
+
 ## Projects created with Page Framework
 [Openmine](opendeveloper.itch.io/openmine)
 
