@@ -2,9 +2,9 @@
 
 ## Useful Links
 
-[View official API documentation here](README.md)
+[View official API documentation](README.md)
 
-[View official examples here](EXAMPLES.md)
+[View official examples page](EXAMPLES.md)
 
 ## Installation
 First, install the framework with this command
