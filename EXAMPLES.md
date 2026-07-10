@@ -29,3 +29,37 @@ class MainPage:
 
 program.run()
 ```
+
+## Example 02: A button on a screen
+
+```python
+from models import CanvasEmbedding, RedirectField, ButtonField, TextField
+from program import Program, Game
+
+class MyGame(Game):
+	pass
+
+class StartPage:
+	name="start"
+	def call(self, ctx={}):
+		RedirectField(MainPage, StartPage, program).call()
+
+def hello_from_button():
+	TextField("Hello World!", "main").call()
+
+program=Program("start", {}, StartPage, ["start", "main"], MyGame())
+example_embedding=CanvasEmbedding("main", "Example Canvas", 300, 300, program)
+example_embedding.NewWindow()
+example_embedding.NewCanvas(0)
+example_embedding.call()
+example_button_field=ButtonField(example_embedding, hello_from_button, "Greet", 0)
+example_button_field.call()
+
+class MainPage:
+	name="main"
+	config="pgwin"
+	def call(self, ctx={}):
+		example_embedding.call()
+
+program.run()
+```
