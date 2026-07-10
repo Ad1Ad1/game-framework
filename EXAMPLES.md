@@ -230,7 +230,7 @@ class MyGame(Game):
 		self.example_text_2=TextFieldExp(self.example_embedding, "Group control example text", 100, 100, text_color=(0,255,255), fontsize=24)
 		self.example_button=ButtonFieldAdv(self.example_embedding, "Switch to OtherPage", 300, 50, 100, 300, self.switch_other, fontsize=24)
 		self.example_embedding.linkbtn(self.example_button)
-		self.example_group=PygameObjectGroup(self.example_embedding, [example_text, example_text_2])
+		self.example_group=PygameObjectGroup(self.example_embedding, [self.example_text, self.example_text_2])
 
 	def switch_other(self):
 		if program.control=="main":
