@@ -554,6 +554,9 @@ class ButtonField:
                         ErrorForm(f"Canvas Embedding did not find the canvas in question(Canvas #{canvas})", self.cne.embed.gr["page"], type="103 NON-EXISTENT ERROR").call()
                         self.c=True
                 if not self.c:
+                        self.x=x
+                        self.y=y
+                        self.w=0
                         self.embed=Embedding(self.cne.embed.gr["page"],{"canvas":canvas, "background":background, "foreground":foreground, "name":name, "command":cmd, "anchor":anchor, "x":x,"y":y,"w":0,"container":None, "special":False,"window":None}) 
         def call(self, redraw=False, ignored=False):
                 if self.c:
@@ -570,7 +573,7 @@ class ButtonField:
                         self.btn=Button(self.cne.cnvs[self.embed.gr["canvas"]]["tk"], text=self.embed.gr["name"], command=self.embed.gr["command"], bg=self.embed.gr["background"])
                 else:
                         self.btn=Button(self.cne.cnvs[self.embed.gr["canvas"]]["tk"], text=self.embed.gr["name"], command=self.embed.gr["command"], bg=self.embed.gr["background"], fg=self.embed.gr["foreground"])
-                self.embed.gr["window"]=self.cne.cnvs[self.embed.gr["canvas"]]["cnv"].create_window(self.embed.gr["x"], self.embed.gr["y"], window=self.btn, anchor=self.embed.gr["anchor"])
+                self.embed.gr["window"]=self.cne.cnvs[self.embed.gr["canvas"]]["cnv"].create_window(self.x, self.y, window=self.btn, anchor=self.embed.gr["anchor"])
                 self.cne.call()
                 return 0
 
