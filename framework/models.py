@@ -123,6 +123,8 @@ from inspect import signature as s
 from math import floor, ceil
 from tkinter import *
 from time import sleep
+import os
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 import pygame
 import pygame.font
 import sys
@@ -552,23 +554,23 @@ class ButtonField:
                         ErrorForm(f"Canvas Embedding did not find the canvas in question(Canvas #{canvas})", self.cne.embed.gr["page"], type="103 NON-EXISTENT ERROR").call()
                         self.c=True
                 if not self.c:
-                        self.embed=Embedding(self.cne.embed["page"],{"canvas":canvas, "background":background, "foreground":foreground, "name":name, "command":cmd, "anchor":anchor, "x":x,"y":y,"w":0,"container":None, "special":False,"window":None}) 
+                        self.embed=Embedding(self.cne.embed.gr["page"],{"canvas":canvas, "background":background, "foreground":foreground, "name":name, "command":cmd, "anchor":anchor, "x":x,"y":y,"w":0,"container":None, "special":False,"window":None}) 
         def call(self, redraw=False, ignored=False):
                 if self.c:
                         return 1
-                if redraw and self.embed["window"]:
-                        self.cne.cnvs[self.embed["canvas"]]["cnv"].delete(self.embed["window"])
+                if redraw and self.embed.gr["window"]:
+                        self.cne.cnvs[self.embed.gr["canvas"]]["cnv"].delete(self.embed.gr["window"])
                 if ignored:
                         return 0
-                if self.embed["background"]=="None" and self.embed["foreground"]=="None":
-                        self.btn=Button(self.cne.cnvs[self.embed["canvas"]]["tk"], text=self.embed["name"], command=self.embed["command"])
-                elif self.embed["background"]=="None":
-                        self.btn=Button(self.cne.cnvs[self.embed["canvas"]]["tk"], text=self.embed["name"], command=self.embed["command"], fg=self.embed["foreground"])
-                elif self.embed["foreground"]=="None":
-                        self.btn=Button(self.cne.cnvs[self.embed["canvas"]]["tk"], text=self.embed["name"], command=self.embed["command"], bg=self.embed["background"])
+                if self.embed.gr["background"]=="None" and self.embed.gr["foreground"]=="None":
+                        self.btn=Button(self.cne.cnvs[self.embed.gr["canvas"]]["tk"], text=self.embed.gr["name"], command=self.embed.gr["command"])
+                elif self.embed.gr["background"]=="None":
+                        self.btn=Button(self.cne.cnvs[self.embed.gr["canvas"]]["tk"], text=self.embed.gr["name"], command=self.embed.gr["command"], fg=self.embed.gr["foreground"])
+                elif self.embed.gr["foreground"]=="None":
+                        self.btn=Button(self.cne.cnvs[self.embed.gr["canvas"]]["tk"], text=self.embed.gr["name"], command=self.embed.gr["command"], bg=self.embed.gr["background"])
                 else:
-                        self.btn=Button(self.cne.cnvs[self.embed["canvas"]]["tk"], text=self.embed["name"], command=self.embed["command"], bg=self.embed["background"], fg=self.embed["foreground"])
-                self.embed["window"]=self.cne.cnvs[self.embed["canvas"]]["cnv"].create_window(self.embed["x"], self.embed["y"], window=self.btn, anchor=self.embed["anchor"])
+                        self.btn=Button(self.cne.cnvs[self.embed.gr["canvas"]]["tk"], text=self.embed.gr["name"], command=self.embed.gr["command"], bg=self.embed.gr["background"], fg=self.embed.gr["foreground"])
+                self.embed.gr["window"]=self.cne.cnvs[self.embed.gr["canvas"]]["cnv"].create_window(self.embed.gr["x"], self.embed.gr["y"], window=self.btn, anchor=self.embed.gr["anchor"])
                 self.cne.call()
                 return 0
 
