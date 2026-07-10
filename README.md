@@ -2,6 +2,10 @@
 
 ## Useful links
 [View official examples page](EXAMPLES.md)
+[View official Quick Start page](QUICK_START.md)
+
+## Projects created with Page Framework
+[Openmine](opendeveloper.itch.io/openmine)
 
 ## v.1.0
 This is the initial version of Page Framework.
