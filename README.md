@@ -15,6 +15,89 @@ This version supports the usage of:
 - Some fields or forms may have an *upd* method which is updater of the class that is executed on update tick.
 - Some fields or forms may have *redraw* or *ignored* parameters. Those are if we want to redraw the field/form on screen or ignore drawing
 
+### Error codes system
+        - 1xx: Framework/developer fault - PREFIX
+        
+        - 2xx: User fault - PREFIX
+
+        - 3xx: Developer fault - PREFIX
+
+        - 4xx: Warning - PREFIX
+        
+        - 100 INTERNAL ERROR:
+                Used by framework, raises when something within framework does not work.
+                                
+        - 101 REDIRECT ERROR:
+                Used by framework, raises when page isn't valid(page in development, developer should setup VALID_PAGES to not raise this error).
+        
+        - 102 DATABASE ERROR:
+                Used by framework (look in data.py), raises when database key does not exist or database is not found.
+
+        - 103 NON-EXISTENT ERROR:
+                Used by framework to indicate that something within framework does not exist
+
+        - 104 IMAGE ERROR:
+                Used by framework (look in data.py), raises when something is wrong with image
+
+        - 105 INSTANCE ERROR:
+                Used by framework, raises when an instance is invalid
+
+        - 106 CALLABILITY ERROR:
+                Used by framework, raises when an object has incorrect callability(can be called while shouldn't or can't be called while should)
+
+        - 107 ARGUMENT ERROR:
+                Used by framework when an object has incorrect signature
+
+        - 108 SOUND ERROR:
+                Used by framework, raises when something is wrong with sound
+                
+        - 200 INPUT ERROR:
+                Used by framework AND by developer to show user they have entered incorrect input
+        
+        - 201 ACCESS ERROR:
+                Used by developer to show user that they have tried to access something without respective permission(when creating pages)
+
+        - 300 PAGE ERROR:
+                Used by framework when page is non-existent, doesn't have name or .call() with ctx.
+
+        - 301 PROGRAM ERROR:
+                Used by framework(look in program.py) when program is non existent, doesn't have name, etc
+                 
+        - 302 HISTORY ERROR:
+                Used by framework(look in program.py) when developer tries to access a history page which is unreachable
+
+        - 303 CANVAS ERROR:
+                Used by framework when developer tries to do something illegal with CanvasEmbedding
+
+        - 304 GAME ERROR:
+                Used by framework(look in program.py) when developer tries to do something illegal with Game
+
+        - 400 EXIT WARNING:
+                Used by framework(look in program.py) when developer or user tries to force-quit the program
+
+### framework.py
+This file is a CLI interface module that is made for developers to interact with framework
+
+#### Global commands
+framework register_models_pack name -f --folder your_optional_folder: register models pack *name*.py to framework from this folder if folder argument is not defined else from folder mentioned in folder argument
+
+framework delete_models_pack name: delete models pack *name*.py from framework
+
+framework view_models_packs: view all models packs registered in framework
+
+#### Project(Local) commands
+
+framework project create name -f --folder your_optional_folder -n --requirementfilename your_custom_requirement_file_name: create a new project named name at this folder if folder argument is not defined else from folder mentioned in folder argument. If custom requirement file name is defined, JSON requirement file with that name will be created instead of default file name
+
+framework project add_requirement name -f --folder your_optional_folder -n --requirementfilename your_custom_requirement_file_name: add requirement to a project; requirement is named name; project is at this folder if folder argument is not defined else it is in folder mentioned in folder argument. If custom requirement file name is defined, JSON requirement file with that name will be modified instead of JSON with default file name
+
+framework project delete_requirement -f --folder your_optional_folder -n --requirementfilename your_custom_requirement_file_name: delete requirement from a project; requirement is named name; project is at this folder if folder argument is not defined else it is in folder mentioned in folder argument. If custom requirement file name is defined, JSON requirement file with that name will be modified instead of JSON with default file name
+
+framework project view_requirements -n --requirementfilename your_custom_requirement_file_name: View requirements of project at current folder of default file if custom requirement file name is not defined, else view that file instead
+
+framework project import_requirements -n --requirementfilename your_custom_requirement_file_name -i --ignore: Import requirements to project at current folder. Requirements will be imported from default file if custom requirement file name is not defined, else will be imported from that file instead. May show warnings. *ignore* is a flag to ignore warnings(any value except "e") or display errors instead of warnings("e")
+
+
 ### models.py
 This file is a collection of models for usage in projects made with python.
 
@@ -388,25 +471,3 @@ This is a class for accessing a .json file
 - *retrieve*(arguments: *name*, *total*(default False)) - Retrieves a field in .json file at key *name*. total flag indicates if *name* should be ignored and give full file to you
 - *delete*(arguments: *name*, *total*(default False)) - Deletes a field from .json file at key *name*. total flag indicates if entire .json file should be deleted(swapped for {})
 - *upload*(arguments: *img*) - copies the file from *img* path to ./uploads/
-
-### framework.py
-This file is a CLI interface module that is made for developers to interact with framework
-
-#### Global commands
-framework register_models_pack name -f --folder your_optional_folder: register models pack *name*.py to framework from this folder if folder argument is not defined else from folder mentioned in folder argument
-
-framework delete_models_pack name: delete models pack *name*.py from framework
-
-framework view_models_packs: view all models packs registered in framework
-
-#### Project(Local) commands
-
-framework project create name -f --folder your_optional_folder -n --requirementfilename your_custom_requirement_file_name: create a new project named name at this folder if folder argument is not defined else from folder mentioned in folder argument. If custom requirement file name is defined, JSON requirement file with that name will be created instead of default file name
-
-framework project add_requirement name -f --folder your_optional_folder -n --requirementfilename your_custom_requirement_file_name: add requirement to a project; requirement is named name; project is at this folder if folder argument is not defined else it is in folder mentioned in folder argument. If custom requirement file name is defined, JSON requirement file with that name will be modified instead of JSON with default file name
-
-framework project delete_requirement -f --folder your_optional_folder -n --requirementfilename your_custom_requirement_file_name: delete requirement from a project; requirement is named name; project is at this folder if folder argument is not defined else it is in folder mentioned in folder argument. If custom requirement file name is defined, JSON requirement file with that name will be modified instead of JSON with default file name
-
-framework project view_requirements -n --requirementfilename your_custom_requirement_file_name: View requirements of project at current folder of default file if custom requirement file name is not defined, else view that file instead
-
-framework project import_requirements -n --requirementfilename your_custom_requirement_file_name -i --ignore: Import requirements to project at current folder. Requirements will be imported from default file if custom requirement file name is not defined, else will be imported from that file instead. May show warnings. *ignore* is a flag to ignore warnings(any value except "e") or display errors instead of warnings("e")
