@@ -103,3 +103,42 @@ class MainPage:
 
 program.run()
 ```
+
+## Example 04: Contained
+
+```python
+from models import CanvasEmbedding, RedirectField, ButtonField, TextField, TextFieldAdv, Container
+from program import Program, Game
+
+class MyGame(Game):
+	def on_begin(self):
+		self.global0="Hello"
+
+	def hello_from_button():
+		print("Hello!")
+
+
+class StartPage:
+	name="start"
+	def call(self, ctx={}):
+		RedirectField(MainPage, StartPage, program).call()
+
+program=Program("start", {}, StartPage, ["start", "main"], MyGame())
+
+example_embedding=CanvasEmbedding("main", "Example Canvas", 300, 300, program)
+example_embedding.NewWindow()
+example_embedding.NewCanvas(0)
+example_embedding.call()
+example_text_field=TextFieldAdv(example_embedding, f"{global0} World!", 0, 0, 0)
+example_button_field=ButtonField(example_embedding, MyGame.hello_from_button, "Greet", 0)
+example_container=Container(example_embedding, 100, 100, 200, 0, [example_text_field, example_button_field])
+example_container.call()
+
+class MainPage:
+	name="main"
+	config="pgwin"
+	def call(self, ctx={}):
+		example_embedding.call()
+
+program.run()
+```
