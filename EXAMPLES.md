@@ -4,6 +4,7 @@
 
 ## Example 01: Hello World!
 
+```python
 from models import TextField, SpaceField, RedirectField
 from program import Program, Game
 
@@ -27,3 +28,4 @@ class MainPage:
 		program.exit_now=True
 
 program.run()
+```
