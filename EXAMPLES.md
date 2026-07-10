@@ -142,3 +142,32 @@ class MainPage:
 
 program.run()
 ```
+
+## Example 05: Hello Pygame World!
+
+```python
+from models import PygameEmbedding, RedirectField, TextFieldExp
+from program import Program, Game
+
+class MyGame(Game):
+	def on_begin(self):
+		self.example_embedding=PygameEmbedding(500, 500, "Example Window", "main")
+		self.example_text=TextFieldExp(self.example_embedding, "Hello Pygame World!", 100, 200, text_color=(255, 255, 0))
+
+
+class StartPage:
+	name="start"
+	def call(self, ctx={}):
+		RedirectField(MainPage, StartPage, program).call()
+
+program=Program("start", {}, StartPage, ["start", "main"], MyGame())
+
+class MainPage:
+	name="main"
+	config=("scene", example_embedding)
+	def call(self, ctx={}):
+		example_text.call()
+
+
+program.run()
+```
