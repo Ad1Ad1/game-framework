@@ -216,3 +216,50 @@ class OtherPage:
 
 program.run()
 ```
+
+## Example 07: Group Control
+
+```python
+from models import PygameEmbedding, RedirectField, TextFieldExp, ButtonFieldAdv, PygameObjectGroup
+from program import Program, Game
+
+class MyGame(Game):
+	def on_begin(self):
+		self.example_embedding=PygameEmbedding(500, 500, "Example Window", "main")
+		self.example_text=TextFieldExp(self.example_embedding, "Hello Main World!", 100, 200, text_color=(255, 255, 0))
+		self.example_text_2=TextFieldExp(self.example_embedding, "Group control example text", 100, 100, text_color=(0,255,255), fontsize=24)
+		self.example_button=ButtonFieldAdv(self.example_embedding, "Switch to OtherPage", 300, 50, 100, 300, self.switch_other, fontsize=24)
+		self.example_embedding.linkbtn(self.example_button)
+		self.example_group=PygameObjectGroup(self.example_embedding, [example_text, example_text_2])
+
+	def switch_other(self):
+		if program.control=="main":
+			example_button.change_text("Switch to MainPage")
+			example_group.off_all()
+			RedirectField(OtherPage,MainPage,program).call()
+		else:
+			example_button.change_text("Switch to OtherPage")
+			example_group.on_all()
+			RedirectField(MainPage,OtherPage,program).call()
+
+class StartPage:
+	name="start"
+	def call(self, ctx={}):
+		RedirectField(MainPage, StartPage, program).call()
+
+program=Program("start", {}, StartPage, ["start", "main", "other"], MyGame())
+
+class MainPage:
+	name="main"
+	config=("scene", example_embedding)
+	def call(self, ctx={}):
+		example_group.call()
+
+class OtherPage:
+	name="other"
+	config=("scene", example_embedding)
+	def call(self, ctx={}):
+		example_group.call()
+
+program.run()
+```
