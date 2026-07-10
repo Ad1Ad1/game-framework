@@ -237,7 +237,7 @@ This is an embedding for pygame built-in module. It creates a window on initiali
 - *page*: Page we are currently on
 - *color*(default (230, 230, 230)): tuple indicating color to use on background
 
-**Methods**
+**Methods**:
 - *link*(parameters: *sprite*) - link ImageSprite to be displayed in window
 - *linkbtn*(parameters: *sprite*) - link ButtonFieldAdv to be displayed in window
 - *linkkey*(parameters: *keypress*) - link ButtonPressField for window to react to
@@ -250,7 +250,7 @@ This is a sprite to move in pygame window
 - *center*: tuple (x,y) for center position of sprite
 - *imgpath*: Link to image to display
 
-**Methods**
+**Methods**:
 - *call* - show the sprite(blit)
 - *upd* - update the sprite
 - *toggle_move*(parameters: *pix*, *dire*) - dire must be "left", "right", "up" or "down*. Start moving sprite(on next update) in direction dire with speed pix pixels/tick
@@ -277,7 +277,7 @@ This is a button for Pygame
 - *fontsize*(default 48): Font size for text on button
 - *begin_state*(default 0): Beginning state of button(0 - on, 1 - disabled(cannot press but can see), 2 - off)
 
-**Methods**
+**Methods**:
 - *_prep_msg*(parameters: *msg*) - prepare message for display. Internal
 - *change_text*(parameters: *nxt*) - change text on message to nxt
 - *call* - show the button(blit)
@@ -285,6 +285,60 @@ This is a button for Pygame
 - *disable* - disable the button(disabled)
 - *enable* - enable button(on)
 - *off* - hide button(off)
+
+##### TextFieldExp
+This is a text field for pygame
+- *embed*: *PygameEmbedding* that the text will be displayed on
+- *text*: Text to display
+- *begin_x*: Begin(topleft) x position of text
+- *begin_y*: Begin(topleft) y position of text
+- *color*(default (150,150,200)): Color of text background, if applicable
+- *text_color*(default (255,255,255)): Color of text
+- *fonttype*(default None): Font type for text
+- *fontsize*(default 48): Font size for text
+- *begin_state*(default 0): Beginning state of text(0 - on, 1 - off)
+- *nobg*(default 0): Remove background from text(1 - yes, 0 - no). Removes background
+
+**Methods**:
+- *_prep_msg*(parameters: *msg*) - prepare message for display. Internal
+- *change_text*(parameters: *nxt*) - change text on message to nxt
+- *call* - show the text(blit)
+- *on* - show text(on)
+- *off* - hide text(off)
+
+##### Music
+This is a sound field for pygame
+- *embed*: *PygameEmbedding* that the sound will be heard in
+- *filepath*: Path to sound file
+- *type*(default "sound"): Type of music("sound" - short, "music" - long) 
+- *permanent*(default 0): Permanently loop music flag(only applicable if type is "music", 0 - no, 1 - yes)
+- *volume*(default 0.5): Volume of music
+
+**Methods**:
+- *call* - start sound
+- *newvolume*(parameters: *volume*) - change sound volume to volume
+
+##### Slider
+This is a customizable slider for pygame
+*Special*: call method returns current position of slider
+- *embed*: *PygameEmbedding* that the slider will be displayed in
+- *pos*: Position of the slider(tuple of position of topleft corner, (x,y))
+- *size*: Size of slider
+- *limit*: End of slider
+- *slidercolor*: Color of slider handle
+- *rectcolor*: Color of slider track
+- *initialpercentage*(default 0): Initial percentage of handle on track
+
+#### PygameObjectGroup
+This is a group of pygame Sprites/fields/objects to be commanded unified
+- *embed*: *PygameEmbedding* for the group
+- *togroup*: List of objects to group
+
+**Methods**:
+*off_all*: Turn off(hide) all objects in group
+*disable_all*: Disable(make unclickable but not hide) all objects in group
+*on_all*: Show all objects in group
+*call*: Update and call all objects in group, return results
 
 ### program.py
 This file is the framework manager. It manages your pages and objects on them
