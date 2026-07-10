@@ -202,7 +202,7 @@ This is a form for inputting things on canvas
 - *x*: x begin position of form
 - *y*: y begin position of form
 - *canvas*: Canvas number that the figure will be displayed on
-- *prompt*:
+- *prompt*: This is your text to be displayed in window upon input request
 - *anchor*(default "nw"): Anchor direction for the coordinates
 - *type_req*(default str): This is the input type of this field. Will notify user and ask for another input if input is wrong else will turn the input into specified type and return it.
 - Only accepted types are str, float, int, bool
@@ -214,6 +214,7 @@ This is a form for inputting things on canvas
 - *get* - gets and returns the value input by user
 
 ##### Container
+This is a container for grouping forms or fields on canvas
 - *canvas_embed*: *CanvasEmbedding* that the container will be displayed on
 - *beginx*: x begin position of the container
 - *beginy*: y begin position of the container
@@ -224,16 +225,75 @@ This is a form for inputting things on canvas
 - *pos*(default "center"): Position of elements("begin", "center" or "end")
 
 **Methods**:
-- *get_pos*(parameters: *fld2*) - gets and returns the pos of *fld2* if it is inside container else doesn't return anything
+- *get_pos*(parameters: *fld2*) - gets and returns the pos of field/form *fld2* if it is inside container else doesn't return anything
+
+#### Pygame fields and embedding
+##### PygameEmbedding
+This is an embedding for pygame built-in module. It creates a window on initialization.
+*Special*: Set exit=False to close window
+- *width*: Width of screen
+- *height*: Height of screen
+- *name*: Name(title) of screen
+- *page*: Page we are currently on
+- *color*(default (230, 230, 230)): tuple indicating color to use on background
+
+**Methods**
+- *link*(parameters: *sprite*) - link ImageSprite to be displayed in window
+- *linkbtn*(parameters: *sprite*) - link ButtonFieldAdv to be displayed in window
+- *linkkey*(parameters: *keypress*) - link ButtonPressField for window to react to
+- *register_keys*(parameters: *btns*) - link all ButtonPressFields in a list for window to react to
+- *setup*(parameters: *exec_before_flip*(default *DummyCmd*), *ticks*(default *DummyCmd*), *before_imgs*(default *DummyCmd*), *custom_event_checker*(default *DummyCmdArgs*)) - link hooks for custom logic. exec_before_flip - executed after all standard drawing immediately before flipping to next screen. ticks - executed after link checker, before standard logic(for example, for pygame clock). before_imgs - executed after drawing buttons, before drawing sprites. custom_event_checker - called in event checking loop. Must accept one argument - event.
+
+##### ImageSprite
+This is a sprite to move in pygame window
+- *embed*: *PygameEmbedding* that the sprite will be displayed on
+- *center*: tuple (x,y) for center position of sprite
+- *imgpath*: Link to image to display
+
+**Methods**
+- *call* - show the sprite(blit)
+- *upd* - update the sprite
+- *toggle_move*(parameters: *pix*, *dire*) - dire must be "left", "right", "up" or "down*. Start moving sprite(on next update) in direction dire with speed pix pixels/tick
+
+##### ButtonPressField
+This is keyboard keypress detection class
+- *key*: Key ID to link to(pygame key)
+- *cmd*: Function to execute on key press
+- *cmdr*(default *DummyCmd*): Function to execute on key release 
+- *continuous*(default True): whether to report keypress when key is being held down continuously or only on the exact time of key press/release
+
+#### ButtonFieldAdv
+This is a button for Pygame
+- *embed*: *PygameEmbedding* that the button will be displayed on
+- *text*: Text to display on the button
+- *width*: Width of the button
+- *height*: Height of the button
+- *begin_x*: Begin(topleft) x position of button
+- *begin_y*: Begin(topleft) y position of button
+- *on_click*: Function to execute on button click
+- *color*(default (150,150,200)): Color of button
+- *text_color*(default (255,255,255)): Color of button text
+- *fonttype*(default None): Font type for text on button
+- *fontsize*(default 48): Font size for text on button
+- *begin_state*(default 0): Beginning state of button(0 - on, 1 - disabled(cannot press but can see), 2 - off)
+
+**Methods**
+- *_prep_msg*(parameters: *msg*) - prepare message for display. Internal
+- *change_text*(parameters: *nxt*) - change text on message to nxt
+- *call* - show the button(blit)
+- *upd* - update the button also includes click events
+- *disable* - disable the button(disabled)
+- *enable* - enable button(on)
+- *off* - hide button(off)
 
 ### program.py
 This file is the framework manager. It manages your pages and objects on them
 
 #### DummyPage
-Look DummyPage in models.py
+Look DummyPage in models.py/Technical fields and other technical things
 
 #### Singleton
-This is a singleton metaclass. It manages creating singletons(such as Games). It also makes all variables from *on_begin* method of said class available globally
+This is a singleton metaclass. It manages creating singletons(such as Games). It also makes all variables from *on_begin* method of said class(if such method exists) available globally
 
 #### Game
 This is a class for games or views. You should make a class that follows from game. If it has *on_begin*, it will make all valriables defined there with self. global. Otherwise it is just container for your functions which can be accessed anytime with YourGameClass().YourFunction(params)
