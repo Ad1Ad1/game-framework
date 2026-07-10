@@ -391,3 +391,22 @@ This is a class for accessing a .json file
 
 ### framework.py
 This file is a CLI interface module that is made for developers to interact with framework
+
+#### Global commands
+framework register_models_pack name -f --folder your_optional_folder: register models pack *name*.py to framework from this folder if folder argument is not defined else from folder mentioned in folder argument
+
+framework delete_models_pack name: delete models pack *name*.py from framework
+
+framework view_models_packs: view all models packs registered in framework
+
+#### Project(Local) commands
+
+framework project create name -f --folder your_optional_folder -n --requirementfilename your_custom_requirement_file_name: create a new project named name at this folder if folder argument is not defined else from folder mentioned in folder argument. If custom requirement file name is defined, JSON requirement file with that name will be created instead of default file name
+
+framework project add_requirement name -f --folder your_optional_folder -n --requirementfilename your_custom_requirement_file_name: add requirement to a project; requirement is named name; project is at this folder if folder argument is not defined else it is in folder mentioned in folder argument. If custom requirement file name is defined, JSON requirement file with that name will be modified instead of JSON with default file name
+
+framework project delete_requirement -f --folder your_optional_folder -n --requirementfilename your_custom_requirement_file_name: delete requirement from a project; requirement is named name; project is at this folder if folder argument is not defined else it is in folder mentioned in folder argument. If custom requirement file name is defined, JSON requirement file with that name will be modified instead of JSON with default file name
+
+framework project view_requirements -n --requirementfilename your_custom_requirement_file_name: View requirements of project at current folder of default file if custom requirement file name is not defined, else view that file instead
+
+framework project import_requirements -n --requirementfilename your_custom_requirement_file_name -i --ignore: Import requirements to project at current folder. Requirements will be imported from default file if custom requirement file name is not defined, else will be imported from that file instead. May show warnings. *ignore* is a flag to ignore warnings(any value except "e") or display errors instead of warnings("e")
