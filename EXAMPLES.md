@@ -3,8 +3,7 @@
 ## Useful links
 
 [View official API documentation](README.md)
-
-[Openmine(Created with this framework)](https://opendeveloper.itch.io/openmine/)
+[View official Quick Start page](QUICK_START.md)
 
 ## Example 01: Hello World!
 
