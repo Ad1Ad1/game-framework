@@ -10,13 +10,13 @@
 First, install the framework with this command
 
 ```shell
-pip install framework_lib
+pip install framework-lib
 ```
 
 ## Project creation
 Now, create a new project(maybe in a separate folder) with this command
 ```shell
-framework_lib project create {name}
+framework-lib project create {name}
 ```
 Open created folder. List contents with this command:
 ```shell
