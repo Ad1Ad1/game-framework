@@ -1,6 +1,7 @@
 # Page Framework
 
-[View official examples page to understand usage](EXAMPLES.md)
+## Useful links
+[View official examples page](EXAMPLES.md)
 
 ## v.1.0
 This is the initial version of Page Framework.
