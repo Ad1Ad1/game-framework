@@ -8,7 +8,7 @@
 [View official License](LICENSE)
 
 ## Projects created with Page Framework
-[Openmine](opendeveloper.itch.io/openmine)
+[Openmine](https://opendeveloper.itch.io/openmine)
 
 ## v.1.0
 This is the initial version of Page Framework.
