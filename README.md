@@ -13,7 +13,7 @@ This version supports the usage of:
 - An embedding is a general manager of an imported module or a dictionary
 - Every field, form, page has a *call* method which is an entry, execution and exit method of class. In general only it is called upon execution
 - Some fields or forms may have an *upd* method which is updater of the class that is executed on update tick.
-- Some fields or forms may have *redraw* or *ignored* parameters. Those are if we want to redraaw the field/form on screen or ignore drawing
+- Some fields or forms may have *redraw* or *ignored* parameters. Those are if we want to redraw the field/form on screen or ignore drawing
 
 ### models.py
 This file is a collection of models for usage in projects made with python.
